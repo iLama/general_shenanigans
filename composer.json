@@ -1,0 +1,8 @@
+{
+    "require": {
+        "mpociot/botman": "^1.4",
+        "mpociot/slack-client": "^0.2.9",
+        "guzzlehttp/guzzle": "^6.2",
+        "fabpot/goutte": "^3.2"
+    }
+}
