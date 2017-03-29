@@ -4,7 +4,7 @@ use Mpociot\BotMan\BotManFactory;
 use Mpociot\BotMan\BotMan;
 
 $config = [
-    'slack_token' => ''
+    'slack_token' => '{{slack-token}}'
 ];
 
 // create an instance
@@ -43,6 +43,7 @@ $botman->hears('my nameplate medallion says', function (BotMan $bot) {
 $botman->hears('what do you say general', function (BotMan $bot) {
     $bot->reply('http://www.reactiongifs.us/wp-content/uploads/2013/04/nodding_clint_eastwood.gif');
 });
+
 $botman->hears('best design ever', function (BotMan $bot) {
     $bot->reply('https://www.gifcities.org/?q=under+construction');
 });
@@ -56,7 +57,7 @@ $botman->hears('{name}\+\+', function (BotMan $bot, $name) {
     if ($thing->has($name)) {
         $popularity = $thing->get($name) + 1;
 
-        $thing->save([
+        $bot->driverStorage()->save([
             $name => $popularity
         ]);
         $bot->reply('Look at '.$name.' with '.$popularity.' ++s');
@@ -78,7 +79,7 @@ $botman->hears('{name}\-\-', function (BotMan $bot, $name) {
     if ($thing->has($name)) {
         $popularity = $thing->get($name) - 1;
 
-        $thing->save([
+        $bot->driverStorage()->save([
             $name => $popularity
         ]);
         $bot->reply('Look at '.$name.' with '.$popularity.' ++s');
@@ -109,6 +110,7 @@ $botman->hears('{name}\?\?', function (BotMan $bot, $name) {
         $bot->reply($name .' has no ++s');
     }
 });
+
 
 // start listening
 $botman->listen();

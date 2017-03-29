@@ -11,7 +11,7 @@ $client = new Client();
 $crawler = $client->request('GET', 'http://webcomicname.com/tagged/oh+no/');
 
 while ($crawling) {
-     $crawler->filter('#posts article')->each(function ($post) use (&$dataStore) {
+    $crawler->filter('#posts article')->each(function ($post) use (&$dataStore) {
         //die($post->filter('.post img')->eq(0)->attr('src'));
         $dataStore['responses'][] = array(
             'imgURI' => $post->filter('.post img')->eq(0)->attr('src'),
