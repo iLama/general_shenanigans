@@ -114,7 +114,7 @@ $botman->hears('{name}\?\?', function (BotMan $bot, $name) {
     }
 });
 
-$botman->hears('(\bcat(s)?\b)', function (BotMan $bot) {
+$botman->hears('(.*\bcat(s)?\b.*)', function (BotMan $bot) {
 
     $cats = new Cats();
 
