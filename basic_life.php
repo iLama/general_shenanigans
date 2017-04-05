@@ -1,7 +1,10 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/generators/catapi/Cats.php';
+
 use Mpociot\BotMan\BotManFactory;
 use Mpociot\BotMan\BotMan;
+use Cats\Cats;
 
 $config = [
     'slack_token' => '{{slack-token}}'
@@ -111,6 +114,22 @@ $botman->hears('{name}\?\?', function (BotMan $bot, $name) {
     }
 });
 
+$botman->hears('(\bcat(s)?\b)', function (BotMan $bot) {
+
+    $cats = new Cats();
+
+    $catResult = $cats->getCat();
+
+    $bot->reply('', [
+        'attachments' => [
+            [
+                'title'      => 'Cat provided by the Cat API',
+                'title_link' => $catResult['source_url'],
+                'image_url'  => $catResult['url'],
+            ]
+        ]
+    ]);
+});
 
 // start listening
 $botman->listen();
